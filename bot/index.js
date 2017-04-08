@@ -2,11 +2,6 @@ const Bot = require('bootbot');
 
 const replies = require('./replies');
 
-let bot = new Bot({
-    token: process.env.PAGE_TOKEN || '',
-    verify: process.env.VERIFY_TOKEN || '',
-});
-
 const bot = new BootBot({
     accessToken: process.env.PAGE_TOKEN,
     verifyToken: process.env.VERIFY_TOKEN,
