@@ -28,6 +28,7 @@ module.exports = {
             };
 
             convo.ask(question, (payload, convo) => {
+                convo.set('t_shirt_size', payload.message.text);
                 convo.say(`Got it!`)
                     .then(askIfDeveloper(convo));
             });
@@ -69,7 +70,8 @@ module.exports = {
             convo.end();
             callback({
                 email: convo.get('email'),
-                occupation: convo.get('occupation')
+                occupation: convo.get('occupation'),
+                t_shirt_size: convo.get('t_shirt_size'),
             });
         }
 
