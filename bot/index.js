@@ -19,11 +19,11 @@ bot.hear([/hi/i, /hello/i], (payload, chat) => {
 });
 
 bot.hear([/register/i, /sign[- ]?up/i], (payload, chat) => {
-    console.log(payload);
+    const psid = payload.sender.id; // Page scoped ID
     chat.getUserProfile().then((user) => {
-        db.saveUser(user.id, user, () => {
+        db.saveUser(psid, user, () => {
             User.register(chat, (userPatch) => {
-                db.updateUser(user.id, userPatch);
+                db.updateUser(psid, userPatch);
             });
         });
     });
