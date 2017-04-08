@@ -19,10 +19,11 @@ bot.hear([/hi/i, /hello/i], (payload, chat) => {
 });
 
 bot.hear([/register/i, /sign[- ]?up/i], (payload, chat) => {
+    console.log(payload);
     chat.getUserProfile().then((user) => {
         db.saveUser(user.id, user, () => {
             User.register(chat, (userPatch) => {
-                db.updateUser(userPatch);
+                db.updateUser(user.id, userPatch);
             });
         });
     });
