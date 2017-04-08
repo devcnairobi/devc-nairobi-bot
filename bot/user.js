@@ -65,8 +65,7 @@ module.exports = {
         };
 
         const end = (convo) => {
-            convo.say(`Ok, good! You are registered :) Welcome to Developer Circle: Nairobi 
-            - http://fb.com/groups/DevCNairobi`);
+            convo.say(`Ok, good! You are registered :) Welcome to Developer Circle: Nairobi - http://fb.com/groups/DevCNairobi`);
             convo.end();
             callback({
                 email: convo.get('email'),
