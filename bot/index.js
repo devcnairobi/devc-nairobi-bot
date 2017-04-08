@@ -14,10 +14,7 @@ bot.on('error', (err) => {
 
 bot.on('message', (payload, chat) => {
     let text = payload.message.text;
-
-    chat({ text: replies.default }, function(err) {
-        if (err) console.log(err);
-    });
+    chat.say(replies.default);
 });
 
 module.exports = bot;
