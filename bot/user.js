@@ -5,9 +5,6 @@ const validator = require('validator');
 
 module.exports = {
     register(chat, callback) {
-        chat.conversation((convo) => {
-            askEmail(convo);
-        });
 
         const askEmail = (convo) => {
             convo.ask(`What's your email?`, (payload, convo) => {
@@ -57,5 +54,9 @@ module.exports = {
                 occupation: convo.get('occupation')
             });
         }
+
+        chat.conversation((convo) => {
+            askEmail(convo);
+        });
     }
 }
