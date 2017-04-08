@@ -2,7 +2,7 @@ const BootBot = require('bootbot');
 
 const replies = require('./replies');
 const User = require('./user');
-const db = require('./firebase');
+const db = require('../storage/firebase');
 
 const bot = new BootBot({
     accessToken: process.env.PAGE_TOKEN,
