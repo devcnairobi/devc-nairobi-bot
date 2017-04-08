@@ -1,6 +1,8 @@
 const BootBot = require('bootbot');
 
 const replies = require('./replies');
+const User = require('./user');
+const db = require('./firebase');
 
 const bot = new BootBot({
     accessToken: process.env.PAGE_TOKEN,
@@ -17,6 +19,16 @@ bot.on('message', (payload, chat) => {
 
     chat({ text: replies.default }, function(err) {
         if (err) console.log(err);
+    });
+});
+
+bot.hear([/register/i, /sign[- ]?up/i], (payload, chat) => {
+    chat.getUserProfile().then((user) => {
+        db.saveUser(user.id, user, () => {
+            User.register(chat, (userPatch) => {
+                db.updateUser(userPatch);
+            });
+        });
     });
 });
 
