@@ -44,7 +44,6 @@ module.exports = {
                 const re = /yes/i;
                 if (re.test(payload.message.text)) {
                     convo.set('occupation', 'developer');
-                    convo.say(`Ok, good! Thanks.`);
                     end(convo);
                 } else {
                     askOccupation(convo);
@@ -57,7 +56,6 @@ module.exports = {
                 const text = payload.message.text
                 if (text && text.length > 3) {
                     convo.set('occupation', payload.message.text);
-                    convo.say('Thanks!');
                     end(convo);
                 } else {
                     convo.say(`Sorry, I didn't get that.`)
@@ -67,6 +65,8 @@ module.exports = {
         };
 
         const end = (convo) => {
+            convo.say(`Ok, good! You are registered :) Welcome to Developer Circle: Nairobi 
+            - http://fb.com/groups/DevCNairobi`);
             convo.end();
             callback({
                 email: convo.get('email'),
