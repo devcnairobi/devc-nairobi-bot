@@ -8,20 +8,38 @@ module.exports = {
 
         const askEmail = (convo) => {
             convo.ask(`What's your email?`, (payload, convo) => {
-                if (!validator.isEmail) {
+                const email = payload.message.text;
+                if (!validator.isEmail(email)) {
                     // loop recursively until a valid email is provided
                     convo.say(`Oops, this doesn't look like a valid email :(`)
                         .then(() => askEmail(convo));
                 } else {
-                    convo.set('email', payload.message.text);
-                    convo.say(`Thanks!`)
-                        .then(() => askIfDeveloper(convo));
+                    convo.set('email', email);
+                    convo.say(`Good!`)
+                        .then(() => askTShirtSize(convo));
                 }
             });
         };
 
+        const askTShirtSize = (convo) => {
+            const question = {
+                text: `What's your t-shirt size?`,
+                quickReplies: ['S', 'M', 'L', 'XL']
+            };
+
+            convo.ask(question, (payload, convo) => {
+                convo.say(`Got it!`)
+                    .then(askIfDeveloper(convo));
+            });
+        };
+
         const askIfDeveloper = (convo) => {
-            convo.ask(`Are you a developer?`, (payload, convo) => {
+            const question = {
+                text: `Are you a developer?`,
+                quickReplies: ['Yes', 'No']
+            };
+
+            convo.ask(question, (payload, convo) => {
                 const re = /yes/i;
                 if (re.test(payload.message.text)) {
                     convo.set('occupation', 'developer');
