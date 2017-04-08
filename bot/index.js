@@ -14,12 +14,8 @@ bot.on('error', (err) => {
     console.log(err.message)
 });
 
-bot.on('message', (payload, chat) => {
-    let text = payload.message.text;
-
-    chat({ text: replies.default }, function(err) {
-        if (err) console.log(err);
-    });
+bot.hear([/hi/i, /hello/i], (payload, chat) => {
+    chat.say(replies.default);
 });
 
 bot.hear([/register/i, /sign[- ]?up/i], (payload, chat) => {
