@@ -1,4 +1,4 @@
-const Bot = require('bootbot');
+const BootBot = require('bootbot');
 
 const replies = require('./replies');
 
