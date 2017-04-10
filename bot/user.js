@@ -29,8 +29,7 @@ module.exports = {
 
             convo.ask(question, (payload, convo) => {
                 convo.set('t_shirt_size', payload.message.text);
-                convo.say(`Got it!`)
-                    .then(askIfDeveloper(convo));
+                askIfDeveloper(convo);
             });
         };
 
@@ -65,13 +64,15 @@ module.exports = {
         };
 
         const end = (convo) => {
-            convo.say(`Ok, good! You are registered :) Welcome to Developer Circle: Nairobi - http://fb.com/groups/DevCNairobi`);
-            convo.end();
-            callback({
-                email: convo.get('email'),
-                occupation: convo.get('occupation'),
-                t_shirt_size: convo.get('t_shirt_size'),
-            });
+            chat.getUserProfile().then((user) => {
+                convo.say(`Thanks ${user.first_name}! You are registered :) Welcome to Developer Circle: Nairobi - http://fb.com/groups/DevCNairobi`);
+                convo.end();
+                callback({
+                    email: convo.get('email'),
+                    occupation: convo.get('occupation'),
+                    t_shirt_size: convo.get('t_shirt_size'),
+                });
+            })
         }
 
         chat.conversation((convo) => {
