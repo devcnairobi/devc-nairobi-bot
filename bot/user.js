@@ -106,7 +106,7 @@ module.exports = {
                     http.get(options, (err, res) => {
                         if (res.statusCode === 200) {
                             // update user on callback
-                            convo.say(`Request accepted, you @${username} will be added shortly`);
+                            convo.say(`Request accepted, @${username} will be added shortly`);
                             convo.end();
                             callback({ psid, github_username: username });
                         } else {
