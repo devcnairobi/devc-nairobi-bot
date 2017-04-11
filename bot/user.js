@@ -105,11 +105,10 @@ module.exports = {
                     }
                     http.get(options, (err, res) => {
                         if (res.statusCode === 200) {
-                            convo.set('github_username', username);
                             // update user on callback
                             convo.say(`Request accepted, you @${username} will be added shortly`);
                             convo.end();
-                            callback({ psid, username: convo.get('github_username') });
+                            callback({ psid, github_username: username });
                         } else {
                             // most likely it's 404
                             convo.say(`The username @${username} wasn't found, please provide a valid username`)
