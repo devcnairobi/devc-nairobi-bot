@@ -29,4 +29,12 @@ bot.hear([/register/i, /sign[- ]?up/i], (payload, chat) => {
     });
 });
 
+bot.hear([/add [a-z ]* github/i], (payload, chat) => {
+    // phrase like 'add me to Github'
+    User.addToGithub(chat, (userPatch) => {
+        // okay to add redudant psid on the user object
+        db.updateUser(userPatch.psid, userPatch);
+    });
+});
+
 module.exports = bot;

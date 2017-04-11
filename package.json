@@ -1,25 +1,26 @@
 {
-    "name": "devcnairobi-bot",
-    "version": "1.0.0",
-    "description": "Messenger Bot for DevC Nairobi",
-    "main": "app.js",
-    "scripts": {
-        "start": "node app.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/devcnairobi/devc-nairobi-bot.gi"
-    },
-    "author": "@beyondelabs",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/devcnairobi/devc-nairobi-bot/issues"
-    },
-    "homepage": "https://github.com/devcnairobi/devc-nairobi-bot/#readme",
-    "dependencies": {
-        "bootbot": "^1.0.10",
-        "firebase": "^3.7.4",
-        "validator": "^7.0.0"
-    }
+  "name": "devcnairobi-bot",
+  "version": "1.0.0",
+  "description": "Messenger Bot for DevC Nairobi",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devcnairobi/devc-nairobi-bot.gi"
+  },
+  "author": "@beyondelabs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devcnairobi/devc-nairobi-bot/issues"
+  },
+  "homepage": "https://github.com/devcnairobi/devc-nairobi-bot/#readme",
+  "dependencies": {
+    "bootbot": "^1.0.10",
+    "firebase": "^3.7.4",
+    "request": "^2.81.0",
+    "validator": "^7.0.0"
+  }
 }
