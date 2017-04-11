@@ -1,6 +1,7 @@
 /**
  * User Management
  */
+const http = require('request');
 const validator = require('validator');
 
 module.exports = {
@@ -77,6 +78,53 @@ module.exports = {
 
         chat.conversation((convo) => {
             askEmail(convo);
+        });
+    },
+
+    addToGithub(chat, callback) {
+        const askUsername = (convo, recursive) => {
+
+            let question = recursive ? `Please try again` : `What's your Github username?`;
+
+            convo.ask(question, (payload, convo) => {
+                const psid = payload.sender.id;
+                let username = payload.message.text;
+                let validUsername = true;
+                // clean up
+                if (username[0] == '@') username = username.substring(1);
+                // validate
+                validUsername = username.length > 1;
+                // check if it's a valid GH username
+                if (validUsername) {
+                    let options = {
+                        url: `https://api.github.com/users/${username}`,
+                        headers: {
+                            Accept: 'application/vnd.github.v3+json',
+                            'User-Agent': 'devcnairobi',
+                        },
+                    }
+                    http.get(options, (err, res) => {
+                        if (res.statusCode === 200) {
+                            convo.set('github_username', username);
+                            // update user on callback
+                            convo.say(`Request accepted, you @${username} will be added shortly`);
+                            convo.end();
+                            callback({ psid, username: convo.get('github_username') });
+                        } else {
+                            // most likely it's 404
+                            convo.say(`The username @${username} wasn't found, please provide a valid username`)
+                                .then(() => askUsername(convo, true));
+                        }
+                    });
+                } else {
+                    convo.say(`The username you provided looks invalid, please check`)
+                        .then(askUsername(convo, true));
+                }
+            });
+        };
+
+        chat.conversation((convo) => {
+            askUsername(convo);
         });
     }
 }
