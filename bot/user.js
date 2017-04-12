@@ -82,7 +82,7 @@ module.exports = {
     },
 
     addToGithub(chat, callback) {
-        const askUsername = (convo, recursive) => {
+        const askUsername = (convo, recursive, count = 0) => {
 
             let question = recursive ? `Please try again` : `What's your Github username?`;
 
@@ -111,8 +111,14 @@ module.exports = {
                             callback({ psid, github_username: username });
                         } else {
                             // most likely it's 404
-                            convo.say(`The username @${username} wasn't found, please provide a valid username`)
-                                .then(() => askUsername(convo, true));
+                            if (count < 2) {
+                                convo.say(`The username @${username} wasn't found, please provide a valid username`)
+                                    .then(() => askUsername(convo, true, ++count));
+                            } else {
+                                convo.say(`There seem to be something wrong, let's start over again. Sorry :(`);
+                                convo.end();
+                                callback({ psid, github_username: `failed_${username}` });
+                            }
                         }
                     });
                 } else {
