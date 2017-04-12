@@ -4,6 +4,7 @@ const ORG = process.env.GH_ORG;
 const headers = {
   'Accept': 'application/vnd.github.v3+json',
   'User-Agent': ORG,
+  'Authorization': `token ${process.env.GH_OAUTH_TOKEN}`
 };
 
 export function checkUsername(username){

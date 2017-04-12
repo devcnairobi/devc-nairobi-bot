@@ -11,10 +11,12 @@ Messenger Bot for DevC Nairobi
 ### Getting started
 
   - Copy `.env.sample` to `.env`
-  - Fill out the missing env settings (register with firebase to get the `FB_` settings)
+  - Fill out the missing env settings
+      * register with firebase to get the `FB_` settings
+      * create a new _personal access token_ on github and ensure the following scope(`admin:org - write`), then use the token as `GH_OAUTH_TOKEN` env setting.
   - Run app with `npm start`
   - Run `ngrok http 5000`
-  - Copy the url generated and use it as you fb webhook.
+  - Copy the *https* generated url and use it as your fb webhook.
 
 ### Linting
 
@@ -22,3 +24,9 @@ Messenger Bot for DevC Nairobi
   - If you are using Atom you should install the following plugins:
       * [linter](https://atom.io/packages/linter)
       * [linter-eslint](https://atom.io/packages/linter-eslint)
+
+
+### Tests
+
+    - TODO
+  
