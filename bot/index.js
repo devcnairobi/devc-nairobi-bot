@@ -35,4 +35,5 @@ bot.hear([/add [a-z ]* github/i], (payload, chat) => {
     db.updateUser(userPatch.psid, userPatch);
   });
 });
+
 bot.start(process.env.PORT);
