@@ -23,16 +23,7 @@
     "eslint:recommended"
   ],
   "env": {
-    "browser": true,
-    "commonjs": true,
     "es6": true,
-    "node": true,
-    "jquery": true,
-    "mocha": true
-  },
-  "globals": {
-    "App": false,
-    "DS": true,
-    "Ember": true
+    "node": true
   }
 }
