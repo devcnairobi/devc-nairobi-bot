@@ -1,3 +1,3 @@
-const bot = require('./bot');
-
-bot.start(process.env.PORT);
+require('babel-register');
+require('babel-polyfill');
+require('./bot/server');

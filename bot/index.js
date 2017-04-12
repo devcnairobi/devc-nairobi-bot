@@ -1,8 +1,9 @@
 const BootBot = require('bootbot');
-
 const replies = require('./replies');
 const User = require('./user');
 const db = require('../storage/firebase');
+
+// bot
 
 const bot = new BootBot({
     accessToken: process.env.PAGE_TOKEN,
@@ -11,7 +12,7 @@ const bot = new BootBot({
 });
 
 bot.on('error', (err) => {
-    console.log(err.message)
+  console.log(err.message);
 });
 
 bot.hear([/hi/i, /hello/i], (payload, chat) => {
@@ -37,4 +38,6 @@ bot.hear([/add [a-z ]* github/i], (payload, chat) => {
     });
 });
 
-module.exports = bot;
+// bind
+
+bot.start(process.env.PORT);
