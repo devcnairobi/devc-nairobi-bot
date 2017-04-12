@@ -2,6 +2,13 @@ import BootBot from 'bootbot';
 import replies from './replies';
 import User from './user';
 import db from '../storage/firebase';
+import { createLogger } from 'bunyan';
+
+const log = createLogger({
+  name: 'bot',
+  stream: process.stdout,
+  level: 'info',
+});
 
 const bot = new BootBot({
   accessToken: process.env.PAGE_TOKEN,
@@ -10,7 +17,15 @@ const bot = new BootBot({
 });
 
 bot.on('error', (err) => {
-  console.log(err.message);
+  log.error(err.message);
+});
+
+bot.on('message', (payload) => {
+  const ctx = {
+    sender: payload.sender.id,
+    message: payload.message.text,
+  };
+  log.child(ctx).info('message');
 });
 
 bot.hear([/hi/i, /hello/i], (payload, chat) => {
