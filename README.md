@@ -21,7 +21,7 @@ Messenger Bot for DevC Nairobi
             }
           }
           ```
-      * On your Github settings page, create a new _personal access token_ with at least scope(`admin:org - write`) and update `GH_OAUTH_TOKEN` with the generated token.
+      * On your Github settings page, create a new [_personal access token_](https://github.com/settings/tokens) with at least scope(`admin:org - write`) and update `GH_OAUTH_TOKEN` with the generated token.
       * You may need to create a test Github org in order to update `GH_ORG`.
       * Run `ngrok http 5000` and note the generated *https* url.
       * Set up your bot's [Facebook webhook](https://developers.facebook.com/docs/messenger-platform/guides/setup) using the ngrok url.

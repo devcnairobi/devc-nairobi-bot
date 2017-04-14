@@ -52,7 +52,7 @@ function addToOrg(username) {
     logc.info(`adding user to org`);
 
     const opts = {
-      url: `https://api.github.com/users/orgs/${ORG}/memberships/${username}`,
+      url: `https://api.github.com/orgs/${ORG}/memberships/${username}`,
       headers,
     };
 
