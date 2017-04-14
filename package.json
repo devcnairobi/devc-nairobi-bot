@@ -9,9 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devcnairobi/devc-nairobi-bot.git"
+    "url": "git+https://github.com/devcnairobi/devc-nairobi-bot.gi"
   },
-  "author": "@devcnairobi",
+  "author": "@beyondelabs",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/devcnairobi/devc-nairobi-bot/issues"
@@ -19,8 +19,6 @@
   "homepage": "https://github.com/devcnairobi/devc-nairobi-bot/#readme",
   "dependencies": {
     "bootbot": "^1.0.10",
-    "bunyan": "^1.8.10",
-    "dotenv": "^4.0.0",
     "firebase": "^3.7.4",
     "request": "^2.81.0",
     "validator": "^7.0.0"
