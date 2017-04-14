@@ -61,7 +61,7 @@ function addToOrg(username) {
         logc.error('failed to add user to org');
         return reject();
       }
-      logc.info('added user to org!');
+      logc.info('invited/added user to org!');
       resolve();
     });
 

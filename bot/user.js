@@ -81,8 +81,8 @@ module.exports = {
     });
   },
 
-    addToGithub(chat, callback) {
-      const askUsername = (convo, recursive, count = 0) => {
+  addToGithub(chat, callback) {
+    const askUsername = (convo, recursive, count = 0) => {
       const question = recursive ? `Please try again` : `What's your Github username?`;
 
       convo.ask(question, (payload, convo) => {
@@ -97,22 +97,18 @@ module.exports = {
         if (validUsername) {
 
           gh.checkUsername(username)
-            .then(()=>{
+            .then(() => {
               gh.addToOrg(username)
                 .then(()=>{
-                  convo
-                  .say(`Request accepted, @${username} will be added shortly`);
-                  convo
-                  .end();
+                  convo.say(`An invite has been sent to @${username}, please accept it to join org - https://github.com/${process.env.GH_ORG}. Thanks!`);
+                  convo.end();
                   callback({ psid, github_username: username });
                 }, ()=>{
-                  convo
-                  .say(`We couldn't add you to github org automatically so a human will add you manually soon.`);
-                  convo
-                  .end();
+                  convo.say(`We couldn't add you to github org automatically so a human will add you manually soon.`);
+                  convo.end();
                   callback({ psid, github_username: `failed_${username}` });
                 });
-            }, ()=>{
+            }, () => {
               if (count < 2) {
                 convo
                   .say(`The username @${username} wasn't found, please provide a valid username`)
