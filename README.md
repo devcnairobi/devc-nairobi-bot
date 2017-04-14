@@ -1,5 +1,7 @@
 # devc-nairobi-bot
 
+[![Code Climate](https://codeclimate.com/github/devcnairobi/devc-nairobi-bot/badges/gpa.svg)](https://codeclimate.com/github/devcnairobi/devc-nairobi-bot) [![Issue Count](https://codeclimate.com/github/devcnairobi/devc-nairobi-bot/badges/issue_count.svg)](https://codeclimate.com/github/devcnairobi/devc-nairobi-bot)
+
 Messenger Bot for DevC Nairobi
 
 ### Pre-requisites
