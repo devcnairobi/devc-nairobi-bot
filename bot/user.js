@@ -1,8 +1,8 @@
 /**
  * User Management
  */
-import validator from 'validator';
-import { checkUsername, addToOrg } from './gh';
+const validator = require('validator');
+const gh = require('./gh');
 
 module.exports = {
   register(chat, callback) {
@@ -96,9 +96,9 @@ module.exports = {
         // check if it's a valid GH username
         if (validUsername) {
 
-          checkUsername(username)
+          gh.checkUsername(username)
             .then(()=>{
-              addToOrg(username)
+              gh.addToOrg(username)
                 .then(()=>{
                   convo
                   .say(`Request accepted, @${username} will be added shortly`);

@@ -1,8 +1,8 @@
-import BootBot from 'bootbot';
-import replies from './replies';
-import User from './user';
-import db from '../storage/firebase';
-import { createLogger } from 'bunyan';
+const BootBot = require('bootbot');
+const replies = require('./replies');
+const User = require('./user');
+const db = require('../storage/firebase');
+const createLogger = require('bunyan').createLogger;
 
 const log = createLogger({
   name: 'bot',
@@ -51,4 +51,4 @@ bot.hear([/add [a-z ]* github/i], (payload, chat) => {
   });
 });
 
-bot.start(process.env.PORT);
+module.exports = bot;

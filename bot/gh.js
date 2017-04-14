@@ -1,5 +1,5 @@
-import http from 'request';
-import { createLogger } from 'bunyan';
+const http = require('request');
+const createLogger = require('bunyan').createLogger;
 
 const ORG = process.env.GH_ORG;
 const headers = {
@@ -14,7 +14,7 @@ const log = createLogger({
   level: 'info',
 });
 
-export function checkUsername(username){
+function checkUsername(username) {
   return new Promise(function(resolve, reject){
 
     const logc = log.child({
@@ -41,7 +41,7 @@ export function checkUsername(username){
 }
 
 
-export function addToOrg(username){
+function addToOrg(username) {
   return new Promise(function(resolve, reject){
 
     const logc = log.child({
@@ -67,3 +67,8 @@ export function addToOrg(username){
 
   });
 }
+
+module.exports = {
+  checkUsername,
+  addToOrg,
+};

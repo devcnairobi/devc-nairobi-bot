@@ -1,2 +1,4 @@
-import './load-env';
-import './';
+require('./load-env');
+const bot = require('./');
+
+module.exports = bot;
