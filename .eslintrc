@@ -1,0 +1,29 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "comma-dangle": "off",
+    "no-console": "off",
+    "keyword-spacing": "warn",
+    "key-spacing": "error",
+    "prefer-const": "error",
+    "space-before-function-paren": ["error", "never"],
+    "eqeqeq": ["error", "smart"],
+    "no-constant-condition": "off",
+    "no-var": "warn",
+    "object-shorthand": "warn",
+    "semi": "error"
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "env": {
+    "es6": true,
+    "node": true
+  }
+}
