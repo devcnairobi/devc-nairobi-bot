@@ -1,3 +1,3 @@
-const bot = require('./bot/server');
+const bot = require('./bot');
 
 bot.start(process.env.PORT);

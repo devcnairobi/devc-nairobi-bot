@@ -4,6 +4,9 @@ const User = require('./user');
 const db = require('../storage/firebase');
 const createLogger = require('bunyan').createLogger;
 
+// load env variables
+require('./load-env');
+
 const log = createLogger({
   name: 'bot',
   stream: process.stdout,
