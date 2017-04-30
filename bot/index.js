@@ -54,4 +54,10 @@ bot.hear([/add [a-z ]* github/i], (payload, chat) => {
   });
 });
 
+// listen for postback
+bot.on('postback', (payload, chat) => {
+  // 1. Check if user is registered
+  db.checkIfUserExists(payload.sender.id, chat);
+});
+
 module.exports = bot;
