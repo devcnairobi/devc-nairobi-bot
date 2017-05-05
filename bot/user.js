@@ -68,11 +68,10 @@ module.exports = {
       chat.getUserProfile().then((user) => {
         convo.say(`Thanks ${user.first_name}! You are registered :) Welcome to Developer Circle: Nairobi - http://fb.com/groups/DevCNairobi`);
         convo.end();
-        callback({
-          email: convo.get('email'),
-          occupation: convo.get('occupation'),
-          t_shirt_size: convo.get('t_shirt_size'),
-        });
+        user.email = convo.get('email');
+        user.occupation = convo.get('occupation');
+        user.t_shirt_size = convo.get('t_shirt_size');
+        callback(user);
       });
     };
 
@@ -142,11 +141,11 @@ module.exports = {
       converse.ask(question, (payload, convo) => {
         const re = /Yes/i;
         if (re.test(payload.message.text)) {
-          convo.getUserProfile().then((user) => {
-            callback(user);
-          });
+          convo.end();
+          this.register(chat, callback);
         } else {
           converse.say(`To register later, type 'register'`);
+          convo.end();
         }
       });
     };

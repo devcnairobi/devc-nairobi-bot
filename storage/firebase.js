@@ -31,6 +31,9 @@ module.exports = {
             });
           });
         });
+      } else {
+        const user = snapshot.val();
+        chat.say(`Welcome ${user.first_name}, you are already registered.`);
       }
     });
   }
