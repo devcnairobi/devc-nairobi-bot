@@ -130,5 +130,28 @@ module.exports = {
     chat.conversation((convo) => {
       askUsername(convo);
     });
+  },
+
+  askIfToRegister(chat, callback) {
+    const question = {
+      text: `Do you want to register?`,
+      quickReplies: ['Yes', 'No']
+    };
+
+    const prompt = (converse) => {
+      converse.ask(question, (payload, convo) => {
+        const re = /Yes/i;
+        if (re.test(payload.message.text)) {
+          convo.getUserProfile().then((user) => {
+            callback(user);
+          });
+        } else {
+          converse.say(`To register later, type 'register'`);
+        }
+      });
+    };
+    chat.conversation((convo) => {
+      prompt(convo);
+    });
   }
 };
