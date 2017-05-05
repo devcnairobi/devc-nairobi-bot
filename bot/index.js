@@ -56,8 +56,11 @@ bot.hear([/add [a-z ]* github/i], (payload, chat) => {
 
 // listen for postback
 bot.on('postback', (payload, chat) => {
-  // 1. Check if user is registered
-  db.checkIfUserExists(payload.sender.id, chat);
+  // if it's the getting started CTA
+  if (payload.postback.payload === 'start') {
+    // 1. Check if user is registered
+    db.checkIfUserExists(payload.sender.id, chat);
+  }
 });
 
 // add getting started CTA
