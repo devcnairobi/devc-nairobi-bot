@@ -54,6 +54,11 @@ bot.hear([/add [a-z ]* github/i], (payload, chat) => {
   });
 });
 
+bot.hear([/^RSVP/], (payload, chat) => {
+  // eventId hardcoded for now
+  db.eventRSVP(payload.sender.id, 2, chat);
+});
+
 // listen for postback
 bot.on('postback', (payload, chat) => {
   // if it's the getting started CTA
