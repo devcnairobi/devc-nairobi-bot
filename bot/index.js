@@ -60,4 +60,7 @@ bot.on('postback', (payload, chat) => {
   db.checkIfUserExists(payload.sender.id, chat);
 });
 
+// add getting started CTA
+bot.setGetStartedButton("start");
+
 module.exports = bot;
