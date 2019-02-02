@@ -32,7 +32,7 @@ bot.on('message', (payload) => {
   log.child(ctx).info('message');
 });
 
-bot.hear([/hi/i, /hello/i], (payload, chat) => {
+bot.hear([/hi/i, /hello/i, /get started/i], (payload, chat) => {
   chat.say(replies.default);
 });
 
@@ -65,7 +65,7 @@ bot.on('postback', (payload, chat) => {
   // if it's the getting started CTA
   if (payload.postback.payload === 'start') {
     // 1. Check if user is registered
-    db.checkIfUserExists(payload.sender.id, chat);
+    chat.say(replies.default);
   }
 });
 
