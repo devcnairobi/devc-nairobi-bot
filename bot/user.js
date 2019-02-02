@@ -137,14 +137,14 @@ module.exports = {
       quickReplies: ['Yes', 'No']
     };
 
-    const prompt = (converse) => {
-      converse.ask(question, (payload, convo) => {
+    const prompt = (convo) => {
+      convo.ask(question, (payload, convo) => {
         const re = /Yes/i;
         if (re.test(payload.message.text)) {
           convo.end();
           this.register(chat, callback);
         } else {
-          converse.say(`To register later, type 'register'`);
+          convo.say(`To register later, type 'register'`);
           convo.end();
         }
       });

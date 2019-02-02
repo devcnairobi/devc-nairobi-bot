@@ -5,7 +5,8 @@ const db = require('../storage/firebase');
 const createLogger = require('bunyan').createLogger;
 
 // load env variables
-require('./load-env');
+const env = require('dotenv'); // https://github.com/motdotla/dotenv/issues/114
+env.config({ silent: true });
 
 const log = createLogger({
   name: 'bot',

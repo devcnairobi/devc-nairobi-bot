@@ -1,11 +1,6 @@
 const fb = require('./config').firebase;
 const User = require('../bot/user');
 
-const timestamp = () => {
-  // return current_timestamp
-  return Math.round((new Date()).getTime());
-};
-
 module.exports = {
   saveUser(psid, user, cb) {
     // psid: page-scored ID
