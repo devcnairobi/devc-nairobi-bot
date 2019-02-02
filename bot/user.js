@@ -3,6 +3,7 @@
  */
 const validator = require('validator');
 const gh = require('./gh');
+const mail = require('./mail-list');
 
 module.exports = {
   register(chat, callback) {
@@ -44,7 +45,7 @@ module.exports = {
         const re = /yes/i;
         if (re.test(payload.message.text)) {
           convo.set('occupation', 'developer');
-          end(convo);
+          mailingList(convo);
         } else {
           askOccupation(convo);
         }
@@ -56,10 +57,43 @@ module.exports = {
         const text = payload.message.text;
         if (text && text.length > 3) {
           convo.set('occupation', payload.message.text);
-          end(convo);
+          mailingList(convo);
         } else {
           convo.say(`Sorry, I didn't get that.`)
             .then(() => askOccupation(convo));
+        }
+      });
+    };
+
+    /**
+     * As user to be subscribed to the mailinglist
+     */
+    const mailingList = (convo) => {
+      const question = {
+        text: `Would you like to be added to our mailinglist?`,
+        quickReplies: ['Yes', 'No']
+      };
+
+      convo.ask(question, (payload, convo) => {
+        convo.set('t_shirt_size', payload.message.text);
+        if (payload.message.text === 'Yes') {
+          convo.set('mailing_list', true);
+          chat.getUserProfile().then(user => {
+            user.email = convo.get('email');
+            mail.subscribeUser(user, (err, res, body) => {
+              if (!err && body.id) {
+                convo.say(`You have been subscribed!`)
+                  .then(() => end(convo));
+              } else {
+                convo.say(`Snap, something went wrong. A human will subscribe you manually`)
+                  .then(() => end(convo));
+              }
+            });
+          });
+        } else {
+          convo.set('mailing_list', false);
+          convo.say(`Ok, no worries :)`)
+            .then(() => end(convo));
         }
       });
     };
