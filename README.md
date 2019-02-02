@@ -4,6 +4,23 @@
 
 Messenger Bot for DevC Nairobi
 
+## About
+
+This is a Messenger Bot that helps with some ops, running the developer community. Some of the features are:
+
+- Signing up members
+- Adding members to the Github org
+- Subscribing members on the mailinglist
+- RSVPing for events
+- Event listing (past and upcoming) - TBD
+- Post-event surveys - TBD
+
+## Architecture
+
+<img width="1086" alt="screen shot 2019-02-02 at 2 53 50 pm" src="https://user-images.githubusercontent.com/261265/52169532-fa2fa380-274a-11e9-8fda-5d30a3aa16a1.png">
+
+## Developing
+
 ### Pre-requisites
 
   - Node 6.9.0+
