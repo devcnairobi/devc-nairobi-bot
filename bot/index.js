@@ -33,7 +33,7 @@ bot.on('message', (payload) => {
 });
 
 bot.hear([/hi/i, /hello/i, /get started/i], (payload, chat) => {
-  chat.say(replies.default);
+  replies.defaultReply(chat);
 });
 
 bot.hear([/register/i, /sign[- ]?up/i], (payload, chat) => {
@@ -65,7 +65,7 @@ bot.on('postback', (payload, chat) => {
   // if it's the getting started CTA
   if (payload.postback.payload === 'start') {
     // 1. Check if user is registered
-    chat.say(replies.default);
+    replies.defaultReply(chat);
   }
 });
 
