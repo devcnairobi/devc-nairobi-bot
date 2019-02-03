@@ -1,8 +1,10 @@
 const BootBot = require('bootbot');
+const createLogger = require('bunyan').createLogger;
+
+const db = require('../storage/firebase');
+const events = require('./events');
 const replies = require('./replies');
 const User = require('./user');
-const db = require('../storage/firebase');
-const createLogger = require('bunyan').createLogger;
 
 // load env variables
 const env = require('dotenv'); // https://github.com/motdotla/dotenv/issues/114
@@ -58,6 +60,13 @@ bot.hear([/add [a-z ]* github/i], (payload, chat) => {
 bot.hear([/^RSVP/], (payload, chat) => {
   // eventId hardcoded for now
   db.eventRSVP(payload.sender.id, 2, chat);
+});
+
+/**
+ * Display a list of upcoming events
+ */
+bot.hear([/upcoming events/i], (payload, chat) => {
+  events.upcomingEvents(payload, chat);
 });
 
 // listen for postback

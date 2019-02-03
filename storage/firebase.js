@@ -56,4 +56,16 @@ module.exports = {
       }
     });
   },
+
+  listEvents(timestamp, callback) {
+    // TODO: add query to get events >= timestamp once
+    // it is provided
+    const eventsRef = fb.database().ref('/events/');
+    eventsRef.once('value').then(snapshot => {
+      const object = snapshot.val();
+      // convert to array
+      const data = Object.values(object);
+      callback(data);
+    });
+  },
 };
