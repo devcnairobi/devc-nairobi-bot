@@ -100,7 +100,7 @@ module.exports = {
 
     const end = (convo) => {
       chat.getUserProfile().then((user) => {
-        convo.say(`Thanks ${user.first_name}! You are registered :) Welcome to Developer Circle: Nairobi - http://fb.com/groups/DevCNairobi`);
+        convo.say(`Thanks ${user.first_name}! You are registered :) You can follow up on the latest conversations here - http://fb.com/groups/DevCNairobi`);
         convo.end();
         user.email = convo.get('email');
         user.occupation = convo.get('occupation');
