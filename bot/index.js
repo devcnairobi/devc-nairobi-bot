@@ -57,7 +57,7 @@ bot.hear([/add [a-z ]* github/i], (payload, chat) => {
   });
 });
 
-bot.hear([/^RSVP/], (payload, chat) => {
+bot.hear([/^RSVP/i], (payload, chat) => {
   // eventId hardcoded for now
   db.eventRSVP(payload.sender.id, 2, chat);
 });
