@@ -75,7 +75,6 @@ module.exports = {
       };
 
       convo.ask(question, (payload, convo) => {
-        convo.set('t_shirt_size', payload.message.text);
         if (payload.message.text === 'Yes') {
           convo.set('mailing_list', true);
           chat.getUserProfile().then(user => {
