@@ -29,7 +29,7 @@ bot.on('error', (err) => {
 bot.on('message', (payload) => {
   const ctx = {
     sender: payload.sender.id,
-    message: payload.message.text,
+    message: payload.message.text, // TODO: meta data alone
   };
   log.child(ctx).info('message');
 });
@@ -38,7 +38,7 @@ bot.hear([/hi/i, /hello/i, /get started/i], (payload, chat) => {
   replies.defaultReply(chat);
 });
 
-bot.hear([/register/i, /sign[- ]?up/i], (payload, chat) => {
+bot.hear([/register/i, /sign[a-z\- ]*up/i], (payload, chat) => {
   const psid = payload.sender.id; // Page scoped ID
   chat.getUserProfile().then((user) => {
     db.saveUser(psid, user, () => {
@@ -49,7 +49,7 @@ bot.hear([/register/i, /sign[- ]?up/i], (payload, chat) => {
   });
 });
 
-bot.hear([/add [a-z ]* github/i, /github/i], (payload, chat) => {
+bot.hear([/add [a-z ]* github/i], (payload, chat) => {
   // phrase like 'add me to Github'
   User.addToGithub(chat, (userPatch) => {
     // okay to add redudant psid on the user object
@@ -58,8 +58,9 @@ bot.hear([/add [a-z ]* github/i, /github/i], (payload, chat) => {
 });
 
 bot.hear([/^RSVP/i], (payload, chat) => {
-  // use day's timestamp as eventID
-  const eventId = Math.floor(new Date().getTime() / 1000);
+  // use date timestamp as eventID, yyyymmdd
+  const date = new Date();
+  const eventId = date.toISOString().slice(0,10).replace(/-/g,'');
   db.eventRSVP(payload.sender.id, eventId, chat);
 });
 

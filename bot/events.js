@@ -1,13 +1,14 @@
 const isURL = require('validator/lib/isURL');
 const firebase = require('../storage/firebase');
 
-// // common functions
+// common functions
 const utils = {
   validArray(data) {
     return Array.isArray(data) && data.length > 0;
   },
-  currentTimestamp() {
-    return Math.floor(new Date().getTime() / 1000);
+  currentDayTimestamp() {
+    const date = new Date();
+    return date.toISOString().slice(0,10).replace(/-/g,'');
   },
 };
 
@@ -27,7 +28,7 @@ const getEventsElems = (events) => {
         {
           type: 'postback',
           title: '♡ Interested',
-          payload: `event:interest:${event.timestamp}`,
+          payload: `event:interest:${event.timestamp}`, // TODO
         },
       ],
     };
@@ -37,7 +38,8 @@ const getEventsElems = (events) => {
 };
 
 const upcomingEvents = (payload, chat) => {
-  firebase.listEvents(null, (data) => {
+  const timestamp = utils.currentDayTimestamp();
+  firebase.listEvents(timestamp, (data) => {
     if (utils.validArray(data)) {
       const elems = getEventsElems(data);
       chat.sendGenericTemplate(elems);
