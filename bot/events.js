@@ -28,7 +28,7 @@ const getEventsElems = (events) => {
         {
           type: 'postback',
           title: '♡ Interested',
-          payload: `event:interest:${event.timestamp}`, // TODO
+          payload: `event:interest:${event.timestamp}`,
         },
       ],
     };
@@ -50,6 +50,12 @@ const upcomingEvents = (payload, chat) => {
   });
 };
 
+const saveInterest = (payload, chat) => {
+  const eventId = payload.postback.payload.split(':')[2];
+  firebase.saveEventInterest(payload.sender.id, eventId, chat)
+};
+
 module.exports = {
   upcomingEvents,
+  saveInterest,
 };

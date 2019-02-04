@@ -78,6 +78,9 @@ bot.on('postback', (payload, chat) => {
     // 1. Check if user is registered
     replies.defaultReply(chat);
   }
+  if (payload.postback.payload.startsWith('event:interest')) {
+    events.saveInterest(payload, chat);
+  }
 });
 
 // add getting started CTA
