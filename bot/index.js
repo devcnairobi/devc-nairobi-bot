@@ -58,8 +58,9 @@ bot.hear([/add [a-z ]* github/i, /github/i], (payload, chat) => {
 });
 
 bot.hear([/^RSVP/i], (payload, chat) => {
-  // eventId hardcoded for now
-  db.eventRSVP(payload.sender.id, 2, chat);
+  // use day's timestamp as eventID
+  const eventId = Math.floor(new Date().getTime() / 1000);
+  db.eventRSVP(payload.sender.id, eventId, chat);
 });
 
 /**
