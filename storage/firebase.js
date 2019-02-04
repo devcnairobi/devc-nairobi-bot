@@ -68,4 +68,23 @@ module.exports = {
       callback(data);
     });
   },
+
+  saveEventInterest(psid, eventId, chat) {
+    const eventRef = fb.database().ref(`/event_interests/${eventId}/${psid}`);
+    const userRef = fb.database().ref(`/users/${psid}`);
+    userRef.once('value').then((snapshot) => {
+      const user = snapshot.val();
+      if (user !== null) {
+        eventRef.set(user);
+        chat.say(`Thanks, your response is recorded`);
+      } else {
+        chat.say({
+          text: `Please register first.`,
+          quickReplies: [
+            { content_type: 'text', title: 'Register' },
+          ],
+        });
+      }
+    });
+  }
 };
